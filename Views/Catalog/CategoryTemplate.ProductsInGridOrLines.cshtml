@@ -1,0 +1,218 @@
+﻿@model CategoryModel
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Catalog;
+
+@{
+
+  //Layout = "~/Views/Shared/_LayoutTwo.cshtml";
+
+  Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+  Html.AddMetaDescriptionParts(Model.MetaDescription);
+  Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+  var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+  if (canonicalUrlsEnabled)
+  {
+    var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+    Html.AddCanonicalUrlParts(categoryUrl);
+  }
+
+  var breadcrumbDelimiter = EngineContext.Current.Resolve<CommonSettings>().BreadcrumbDelimiter;
+}
+
+
+@{
+  var pg_i = 0;
+
+  var title = Model.Name;
+  if(Model.Name.Equals("categories", StringComparison.OrdinalIgnoreCase))
+  {
+    title = "All Categories";
+  }
+
+  <style>
+    .menu_shop{display:block !important;}
+  </style>
+  
+
+@* header desktop *@
+<div class="row d-none d-md-block carousel" style="margin: -145px 0"> <img class="d-block w-100" src="~/Themes/v1/Content/images/banner-example.jpg"> </div>
+
+@* logo banner desktop *@
+<div class="row mt-5 mb-2 d-none d-md-block" style="padding-top: 140px"> 
+  <div class="col-12 col-md-12 col-sm-12 d-flex justify-content-center">
+    <img src="~/Themes/v1/Content/images/banner-logo-example.jpg">
+  </div>
+</div>
+
+@* header mobile *@
+<div class="row d-block d-md-none carousel" style="margin: 15px -30px"> <img class="d-block w-100" src="~/Themes/v1/Content/images/banner-example.jpg"> </div>
+
+@* logo banner mobile*@
+<div class="row mt-4 mb-2 d-block d-md-none"> 
+  <div class="col-12 col-md-12 col-sm-12 d-flex justify-content-center">
+    <img src="~/Themes/v1/Content/images/banner-logo-example.jpg">
+  </div>
+</div>
+
+@* mobile breadcrumb *@
+<div class="row mt-4 mb-2 d-block d-md-none" style="margin-top: 18%; margin-bottom: 5%;">
+  <div class="col-12 d-flex justify-content-start">
+    <a href="/" style="font-size: 13px;">HOME&nbsp;</a>
+    @foreach (var category in Model.CategoryBreadcrumb)
+    {
+      <a href="/@category.SeName" style="font-size: 13px;">/&nbsp; @category.Name.ToUpper() &nbsp;</a>
+    }
+  </div>
+</div>
+
+
+@* mobile category *@
+<div class="row d-block d-md-none"> 
+    <div class="col-12 col-md-12 col-sm-12 ">
+      <a  role="button" data-toggle="collapse" href="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu" class="btn button-category-mobile collapsed">
+        CATEGORIES
+      </a>
+    </div>
+</div>
+@* content mobile category *@
+<div class="collapse" id="collapseMenu" style="padding-top: 10px;;">
+  <div id="accordionMobileMenu">
+     @* category accordion *@
+      @Html.Action("CategoryNavigation", "Catalog", new {currentCategoryId = 0, currentProductId = 0, isMobile = true } )
+
+
+      @* category non accordion *@
+      <div style="border-top: 1px solid lightgrey">
+        <div class="p-2" role="tab">
+          <a style="font-weight: 500;" href="#" role="button">
+            NEW ARRIVAL
+          </a>
+        </div>
+      </div>
+
+      <div style="border-bottom: 1px solid lightgrey; border-top: 1px solid lightgrey">
+        <div class="p-2" role="tab">
+          <a style="font-weight: 500;" href="#" role="button">
+            PRE-ORDER
+          </a>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container catalog" style="margin-top: 5%; padding: 3%">
+  @if (Model.Products.Any())
+  {
+
+    @* category *@
+    <div class="row mt-4">
+      <div class="col-md-3">
+        <div id="productgallery" class="left_menu d-none d-lg-block">
+          <div id="accordionDesktopMenu" aria-multiselectable="true">
+
+            @* breadcrumb *@
+            <div class="mb-5 d-none d-md-block">
+              <div class="col-12 d-flex justify-content-start" style="padding: 0;">
+                <a href="/" style="font-size: 13px;">HOME&nbsp;</a>
+                  @foreach (var category in Model.CategoryBreadcrumb)
+                  {
+                    <a href="/@category.SeName" style="font-size: 13px;">/&nbsp; @category.Name.ToUpper() &nbsp;</a>
+                  }
+              </div>
+            </div>
+
+            @* category title *@
+            <div style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-top: 1px solid lightgrey">
+              <div class="p-2" role="tab" style="font-weight: bold;"> CATEGORIES </div>
+            </div>
+
+            @* category accordion *@
+            @Html.Action("CategoryNavigation", "Catalog", new {currentCategoryId = 0, currentProductId = 0, isMobile = true } )
+
+            @* category non accordion *@
+            <div style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-top: 1px solid lightgrey">
+              <div class="p-2" role="tab">
+                <a style="font-weight: 500;" href="#" role="button">
+                  NEW ARRIVAL
+                </a>
+              </div>
+            </div>
+
+            <div style="border: 1px solid lightgrey;">
+              <div class="p-2" role="tab">
+                <a style="font-weight: 500;" href="#" role="button">
+                  PRE-ORDER
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-9">
+        <div class="row">
+          @foreach (var item in Model.Products)
+          {
+            var colCss = "col-6 col-sm-6 col-md-4 col-lg-4";
+            var type = item.ThumbnailOrientation;
+            if (type.Equals("landscape", StringComparison.OrdinalIgnoreCase))
+            {
+              colCss = "col-6";
+            }
+
+            <div class="@colCss catalog-line">
+              @Html.Partial("_ProductBox", item)
+            </div>
+            pg_i++;
+          }
+        </div>
+      </div>
+    </div>
+  }
+  else
+  {
+    <div class="col-main-slim mt-5"><h3>We're still preparing the collection. Please stay tuned.</h3></div>
+
+  }
+   
+  <div class="gap"></div>
+    
+
+</div>
+}
+
+<br /><br/>
+
+
+
+
+@*sticky thumbnail*@
+<script src="~/Themes/v1/Scripts/jquery.sticky.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#productgallery").sticky({ topSpacing: 58 });
+  });
+
+  $('#close-alert').click(function(){
+    $("#productgallery").sticky({ topSpacing: 10 });
+  });
+
+  $(document).on('click', '.btn', function () {
+
+  });
+  
+  function shoCategoryMenu() {
+    $('.mobile-category-menu').attr('style', "display: block; !important");
+    $('.header-links').attr('style', "display: none; !important");
+  }
+  $('.button-category-mobile').click(shoCategoryMenu);
+</script>
+
+<script>
+	console.log(`PRODUCT CATEGORY`);
+	var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+	console.log(model);    
+</script>
