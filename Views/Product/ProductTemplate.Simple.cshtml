@@ -1,0 +1,340 @@
+﻿@model ProductDetailsModel
+@using Nop.Core
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Localization;
+@using Nop.Web.Models.Catalog;
+@{
+  //Layout = "~/Views/Shared/_LayoutTwo.cshtml";
+
+  //title, meta
+  Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+  Html.AddMetaDescriptionParts(Model.MetaDescription);
+  Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+  var seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+
+  //canonical URL
+  if (seoSettings.CanonicalUrlsEnabled)
+  {
+    var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+    Html.AddCanonicalUrlParts(productUrl);
+  }
+
+  //open graph META tags
+  if (seoSettings.OpenGraphMetaTags)
+  {
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+    Html.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+    Html.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(storeName) + "\" />");
+  }
+
+  //Twitter META tags
+  if (seoSettings.TwitterMetaTags)
+  {
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+    Html.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+    Html.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(storeName) + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+    Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+  }
+
+
+}
+
+
+
+
+<div class="container product-detail" style="margin-top: -7%;">
+  @* BREADCRUMB DESKTOP*@
+  <div class="row d-none d-md-block">
+    <div class="col-12 d-flex justify-content-start">
+      <a href="/" style="font-size: 13px;">HOME&nbsp;</a>
+        @foreach (var category in Model.Breadcrumb.CategoryBreadcrumb)
+        {
+           <a href="/@category.SeName" style="font-size: 13px;">/&nbsp; @category.Name.ToUpper() &nbsp;</a>
+        }
+        <a href="/@Model.SeName" style="font-size: 13px;">/&nbsp; @Model.Name.ToUpper()</a>
+    </div>
+  </div>
+
+  @* BREADCRUMB MOBILE*@
+  <div class="row d-block d-md-none" style="margin-top: 18%; margin-bottom: 5%;">
+    <div class="col-12 d-flex justify-content-start">
+      <a href="/" style="font-size: 13px;">HOME&nbsp;</a>
+        @foreach (var category in Model.Breadcrumb.CategoryBreadcrumb)
+        {
+           <a href="/@category.SeName" style="font-size: 13px;">/&nbsp; @category.Name.ToUpper() &nbsp;</a>
+        }
+        <a href="/@Model.SeName" style="font-size: 13px;">/&nbsp; @Model.Name.ToUpper()</a>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 2%;">
+    <div class="col-12 colsm-6 col-md-6">
+      @Html.Partial("_ProductDetailsPictures", Model)
+    </div>
+
+    <div class="col-12 colsm-6 col-md-6">
+      @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+        {
+          <div itemscope itemtype="http://schema.org/Product" data-productid="@Model.Id">
+
+            <h1 itemprop="name" style="font-weight: bold; margin-bottom: 1%">@Model.Name</h1>
+            @{
+              var dataDictPrice = new ViewDataDictionary();
+              dataDictPrice.TemplateInfo.HtmlFieldPrefix = string.Format("price_{0}", Model.Id);
+              @Html.Partial("_ProductPrice", Model.ProductPrice, dataDictPrice)
+            }
+
+            <div class="description pb-2" style="color: #B4B0B0;">
+              @Model.ShortDescription
+            </div>
+
+            @{
+              //notify me if oos
+              var totalstock = 0;
+              foreach (var pa in Model.ProductAttributes)
+              {
+                foreach (var s in pa.Values)
+                {
+                  totalstock += s.VariantStockQuantity;
+                }
+              }
+
+              if (totalstock >= 1)
+              {
+                <div class="row no-gutters">
+                  <div class="col-12" style="border-top: 2px solid #707070; border-bottom: 2px solid #707070;">
+                    @{
+                      var dataDictAttributes = new ViewDataDictionary();
+                      dataDictAttributes.TemplateInfo.HtmlFieldPrefix = string.Format("attributes_{0}", Model.Id);
+                      @Html.Partial("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)}
+                  </div>
+                  @{
+                    var dataDictAddToCart = new ViewDataDictionary();
+                    dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", Model.Id);
+                    @Html.Partial("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                  }
+                </div>
+
+                @* description 2 *@
+                <div class="row no-gutters">
+                  <div class="col-12 col-md-12 col-sm-12">
+                    <div id="accordionpProductMenu" aria-multiselectable="true">
+                      @* detail *@
+                      <div class="row">
+                        <div class="col-12 pt-2">
+                          <div class="p-2" role="tab" id="HeadingDescriptionOne" style="border-bottom: 2px solid #707070">
+                            <a style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionOne" aria-expanded="false" aria-controls="collapseDescriptionOne">
+                              DETAILS
+                            </a>
+                          </div>
+                          <div data-parent="#accordionpProductMenu" id="collapseDescriptionOne" class="p-2 collapse show" role="tabpanel" aria-labelledby="HeadingDescriptionOne" style="border-bottom: 2px solid #707070;">
+                            <div style="margin-left: 2%">
+                              @Html.Raw(Model.FullDescription)
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      @* dimensions *@
+                      <div class="row">
+                        <div class="col-12 pt-2">
+                          <div class="p-2" role="tab" id="HeadingDescriptionTwo" style="border-bottom: 2px solid #707070">
+                            <a style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionTwo" aria-expanded="false" aria-controls="collapseDescriptionTwo">
+                              DIMENSIONS
+                            </a>
+                          </div>
+                          <div data-parent="#accordionpProductMenu" id="collapseDescriptionTwo" class="p-2 collapse" role="tabpanel" aria-labelledby="HeadingDescriptionTwo" style="border-bottom: 2px solid #707070;">
+                            <ul style="margin-left: 2%">
+                              <li>test</li>
+                              <li>test</li>
+                              <li>test</li>
+                              <li>test</li>
+                              <li>test</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      @* Sosmed *@
+                      <div class="row">
+                        <div class="col-12 pt-2">
+                          <div class="p-2" role="tab" id="HeadingDescriptionThree">
+                            <a style="font-weight: bold; font-size: 16px;">
+                              SHARE
+                            </a>
+                            <a style="margin-left: 34px;" href="//www.instagram.com/parklonindoensia"><img style="margin-top: -7px;" src="~/Themes/v1/Content/images/instagram icon.jpg" /></a>
+                            <a style="margin-left: 10px;" href="#"><img style="margin-top: -7px;" src="~/Themes/v1/Content/images/fb-icon.jpg" /></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+              else
+              {
+                <!--Back in stock subscription-->
+                @*@Html.Partial("_BackInStockSubscription", Model)*@
+
+                <p class="out-of-stock" style="font-style:italic;">
+                  Sorry, this product is completely out of stock
+                </p>
+
+              }
+            }
+            
+          </div>
+        }
+    </div>
+  </div>
+  
+  @* <div class="row">
+    <div class="col-12 col-md-6 text-center order-12 order-md-1">
+      <div class="product-description">
+
+        @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+        {
+          <div itemscope itemtype="http://schema.org/Product" data-productid="@Model.Id">
+
+            <h1 class="pb-3 pb-md-5" itemprop="name" style="line-height:25px;">@Model.Name</h1>
+            @{
+              var dataDictPrice = new ViewDataDictionary();
+              dataDictPrice.TemplateInfo.HtmlFieldPrefix = string.Format("price_{0}", Model.Id);
+              @Html.Partial("_ProductPrice", Model.ProductPrice, dataDictPrice)
+            }
+
+
+
+            <div class="description pb-5">
+              @Html.Raw(Model.FullDescription)
+            </div>
+
+
+
+
+            @{
+              var totalstock = 0;
+              foreach (var pa in Model.ProductAttributes)
+              {
+                foreach (var s in pa.Values)
+                {
+                  totalstock += s.VariantStockQuantity;
+                }
+              }
+
+              if (totalstock >= 1)
+              {
+                <div class="row no-gutters">
+                  <div class="col-6">
+                    @{
+                      var dataDictAttributes = new ViewDataDictionary();
+                      dataDictAttributes.TemplateInfo.HtmlFieldPrefix = string.Format("attributes_{0}", Model.Id);
+                      @Html.Partial("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)}
+                  </div>
+                  @{
+                    var dataDictAddToCart = new ViewDataDictionary();
+                    dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", Model.Id);
+                    @Html.Partial("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                  }
+                </div>
+              }
+              else
+              {
+                <p class="out-of-stock" style="font-style:italic;">
+                  Sorry, this product is completely out of stock
+                </p>
+              }
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <div class="col-12 col-md-6 order-1 order-md-12">
+      @Html.Partial("_ProductDetailsPictures", Model)
+    </div>
+  </div> *@
+<div class="d-flex justify-content-center">
+  <hr class="d-none d-md-block mt-3"  style="width: 90%; background-color: #707070;">
+  <hr class="d-block d-md-none"  style="width: 100%; background-color: #707070;">
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 col-md-12 d-flex justify-content-center">
+    <h1 class="d-none d-md-block" style="color: #707070 font-weight: bold">RELATED PRODUCTS</h1>
+    <h1 class="d-block d-md-none mb-2" style="margin-top: -3%; font-size: 16px; color: #707070; font-weight: bold">RELATED PRODUCTS</h1>
+  </div>
+</div>
+
+@* Related Products Desktop *@
+<div class="d-none d-md-block">
+  <div class="row mb-5">
+    <div class="col-2 col-md-2 col-sm-2"></div>
+    @for (int i = 0; i < 3; i++)
+    {
+      <div class="col-2 col-md-2 col-sm-2" style="margin-right: 3vw; margin-left: 3vw;">
+        <div class="row">
+          <img class="d-block w-100" src="~/Themes/v1/Content/images/item-example.png">
+        </div>
+        <div class="row">
+          <p>Folder Mat <br> IDR 2.100.000</p>
+        </div>
+      </div>
+    }
+    <div class="col-2 col-md-2 col-sm-2"></div>
+  </div>
+</div>
+
+@* Related Products Mobile *@
+<div class="row d-block d-md-none mb-5">
+  <div class="row" style="padding: 0 4rem; margin-top: -15px;">
+    @for (int i = 0; i < 2; i++)
+    {
+      <div class="col-6 col-md-6">
+        <img class="d-block" style="width: inherit;" src="~/Themes/v1/Content/images/item-example.png">
+        <p style="color: #707070;">Folder Mat <br> IDR 2.100.000</p>
+      </div>
+    }
+  </div>
+</div>
+
+      <!-- recommendation--->
+      @*Automatic*@
+      @* @Html.Action("ProductsAlsoPurchased", "Product", new { productId = Model.Id }) *@
+
+      @*Manual*@
+      @* @Html.Action("CrossSellProducts", "Product", new { productId = Model.Id }) *@
+</div>
+
+  <script>
+    $('.add').click(function () {
+      if ($(this).prev().val() < 9) {
+        $(this).prev().val(+$(this).prev().val() + 1);
+      }
+    });
+    $('.sub').click(function () {
+      if ($(this).next().val() > 1) {
+        if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
+      }
+    });
+
+    function btnclick() {
+      if ($(".btn-addcart").innerHTML == "ADD TO BAG") {
+        $(".btn-addcart").innerHTML = "✓ SEE BAG";
+      }
+      else {
+        $(".btn-addcart").innerHTML = "ADD TO BAG";
+      }
+    }
+    console.log(`PRODUCT DETAIL`);
+    var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+    console.log(model);    
+  </script>

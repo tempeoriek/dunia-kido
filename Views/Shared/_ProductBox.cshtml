@@ -1,0 +1,119 @@
+﻿@model ProductOverviewModel
+@using Nop.Core
+@using Nop.Core.Domain.Orders
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Infrastructure
+@using Nop.Web.Extensions
+@using Nop.Web.Models.Catalog;
+
+@helper Text_Truncate(string input, int length)
+{
+  if (input.Length <= length)
+  {
+    @Html.Raw(@input)
+  }
+  else
+  {
+    @Html.Raw(@input.Substring(0, length))<text>...</text>
+  }
+}
+
+
+@helper Price_Modifier(string input, int length)
+{
+  if (input.Length <= length)
+  {
+    @Html.Raw(@input)
+  }
+  else
+  {
+    @Html.Raw(@input.Substring(0, length))<text>...</text>
+  }
+}
+
+@{
+  //prepare "Add to cart" AJAX link
+  string addtocartlink = "";
+  var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+  var quantity = 1;
+  if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+  {
+    addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+  }
+  else
+  {
+    addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, });
+  }
+}
+
+
+<div class="product-item">
+  <div>
+
+    @if(Model.Quantity > 0)
+    {
+      <div class="ori-product-img">
+        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName})" class="clean">
+          <img src="@Model.DefaultPictureModel.ImageUrl" class="img-fluid center-block" />
+        </a>
+
+        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName})" class="clean overlay-product-img">
+          <img src="@Model.AlternateImage.ImageUrl" class="img-fluid center-block" />
+        </a>
+    
+        @if (Model.MarkAsNew) {
+          <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+            <p class="pt-2" style="color: white; font-size: 7px;">NEW</p>
+          </div>
+        } 
+      </div>
+    }
+    else
+    {
+      <div style="position: relative;">
+        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName})" class="clean">
+          <div class="image__blur">
+            <img class="img-fluid center-block" src="@Model.DefaultPictureModel.ImageUrl" />
+          </div>
+        </a>
+
+        @if (Model.Quantity == 0) {
+          <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+            <p class="pt-2" style="color: white; font-size: 6px;">OUT OF STOCK</p>
+          </div>
+        } else if (Model.MarkAsNew) {
+          <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+            <p class="pt-2" style="color: white; font-size: 7px;">NEW</p>
+          </div>
+        } 
+      </div>
+
+    }
+  </div>
+  
+  <div class="description">
+    <h2 class="text-left"><a class="clean" style="color: #707070;" href="@Url.RouteUrl("Product", new { SeName = Model.SeName})">@Html.DisplayFor(m => m.Name)</a></h2>
+    <div class="prices text-left">
+        @if (!String.IsNullOrEmpty(Model.ProductPrice.OldPrice) || Model.ProductPrice.DisplayTaxShippingInfo){
+          if (!String.IsNullOrEmpty(Model.ProductPrice.OldPrice)){
+            
+          <div class="price old--price"><span style="color:black;text-decoration:line-through"><span style="color:#707070">@Model.ProductPrice.OldPrice</span></span></div>
+            
+          }
+          <div class="price actual--price"><b>@Model.ProductPrice.Price</b></div>
+        }
+        else
+        {
+          <div class="price">@Model.ProductPrice.Price</div>
+        }
+      </div>
+  </div>
+   
+
+</div>
+
+<script>
+	@* console.log(`PRODUCT BOX`); *@
+	@* var model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)); *@
+	@* console.log(model);     *@
+</script>
