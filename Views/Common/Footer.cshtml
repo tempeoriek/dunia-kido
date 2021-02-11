@@ -10,7 +10,7 @@
 
 @if (absolutepath == "/") {
   @* desktop *@
-  <div class="row d-none d-md-block" style="background-color: lightgray; height: 230px;">
+  <div class="row d-none d-md-block hidden-sm hidden-xs" style="background-color: lightgray; height: 230px;">
     <div class="col-12 col-md-12 text-center" style="padding-top: 3% !important">
       <h2 class="mb-1" style="font-weight: bold; font-size: 25px;">JOIN OUR NEWSLETTER</h2>
       <p style="font-size: 16px;">Find out first. Get our emails for info on new <br> items, sales and more</p>
@@ -34,7 +34,7 @@
   </div>
 
   @* mobile *@
-  <div class="row d-block d-md-none" style="background-color: lightgray; height: 230px;">
+  <div class="row d-block d-md-none hidden-md hidden-lg" style="background-color: lightgray; height: 230px;">
     <div class="col-12 col-md-12 text-center" style="padding-top: 10% !important">
       <h2 class="mb-1" style="font-weight: bold; font-size: 25px;">JOIN OUR NEWSLETTER</h2>
       <p style="font-size: 13px;">Find out first. Get our emails for info on new <br> items, sales and more</p>
@@ -60,7 +60,7 @@
 
 <footer data-section-name="footer" style="border-top: 2px solid black;">
   @* desktop *@
-  <div class="container d-none d-md-block">
+  <div class="container d-none d-md-block hidden-sm hidden-xs">
     @* <div class="row mt-2 mt-md-4 mb-5">
       <div class="col-12 d-flex flex-column align-items-center">
         <div class="newsletter">
@@ -85,7 +85,7 @@
     </div> *@
 
     <div class="row m-1 mt-4">
-      <div class="col-1 d-none d-md-block"></div>
+      <div class="col-1 d-none d-md-block hidden-sm hidden-xs"></div>
 
       @* mailing list *@
       <div class="col-12 col-md-5">
@@ -160,13 +160,13 @@
           <script>document.write(new Date().getFullYear())</script>. site by <a href="http://flitts.com" target="_blank">flitts</a>
         </p>
       </div>
-      <div class="col-2 d-none d-md-block"></div>
+      <div class="col-2 d-none d-md-block hidden-sm hidden-xs"></div>
     </div> *@
 
   </div>
 
   @* mobile *@
-  <div class="container d-block d-md-none" style="height: 545px;">
+  <div class="container d-block d-md-none hidden-md hidden-lg" style="height: 545px;">
     <div id="accordionLeftMenuFooter" aria-multiselectable="true">
       @* mailing list *@
       <div class="row m-1 mt-4">

@@ -121,7 +121,7 @@
 
 @foreach (var category in Model.Categories) {
   @* DESKTOP MENU CATALOG NAVIGATION *@
-  <div class="d-none d-md-block " style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-top: 1px solid lightgrey">
+  <div class="d-none d-md-block hidden-xs hidden-sm" style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-top: 1px solid lightgrey">
     <div class=" p-2" role="tab" id="Heading-@category.SeName">
       <a style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapse-@category.SeName" aria-expanded="true" aria-controls="collapse-@category.SeName">
         @category.Name.ToUpper()
@@ -139,7 +139,7 @@
 
   @* DESKTOP MENU CATALOG NAVIGATION *@
     <div class="header-links">
-      <div class="d-block d-md-none">
+      <div class="d-block d-md-none hidden-md hidden-lg">
         <div role="tab" id="Headingheader-@category.SeName">
           <a data-toggle="collapse" href="#collapseheader-@category.SeName" aria-expanded="true" aria-controls="collapseheader-@category.SeName">
             @category.Name.ToUpper()
@@ -158,7 +158,7 @@
     </div>
 
   <div class="mobile-category-menu">
-    <div class="d-block d-md-none" style="border-top: 1px solid lightgrey;">
+    <div class="d-block d-md-none hidden-md hidden-lg" style="border-top: 1px solid lightgrey;">
       <div class="p-2" role="tab" id="Headingmenu-@category.SeName">
         <a style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapsemenu-@category.SeName" aria-expanded="true" aria-controls="collapsemenu-@category.SeName">
           @category.Name.ToUpper()

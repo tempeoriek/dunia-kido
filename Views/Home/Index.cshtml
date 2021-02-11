@@ -19,7 +19,7 @@
         <div class="container-fluid">
           @if (item.DesktopItems.Any())
           {
-            <div class="row d-none d-md-block carousel slide mb-5" data-ride="carousel" id="carouselDesktop">
+            <div class="row d-none d-md-block hidden-xs hidden-sm carousel slide mb-5" data-ride="carousel" id="carouselDesktop">
               <div class="carousel-inner col-12 d-block d-md-block">
                 @{
                   var index = 0;
@@ -56,7 +56,7 @@
 
           @if (item.MobileItems.Any())
           {
-            <div class="row d-block d-md-none carousel slide mb-3" data-ride="carousel" id="carouselExampleControls">
+            <div class="row d-block d-md-none hidden-md hidden-xl carousel slide mb-3" data-ride="carousel" id="carouselExampleControls">
               <div class="carousel-inner col-12 d-block d-md-block position-relative">
 
                 @{
@@ -97,7 +97,7 @@
       if (item.Id == 2)
       {
         if (item.DesktopItems.Any()) {
-          <div class="container d-none d-md-block">
+          <div class="container d-none d-md-block hidden-xs hidden-sm">
             <div class="row ml-4 mr-4">
               <div class="col-1"></div>
               <div class="col-6 home-brand-img" id="hoverItem-@item.DesktopItems[0].Id" style="padding: 10px !important">
@@ -140,7 +140,7 @@
         }
 
         if (item.MobileItems.Any()) {
-          <div class="container d-block d-md-none">
+          <div class="container d-block d-md-none hidden-md hidden-xl">
             <div class="row ml-4 mr-4">
               <div class="col-7 p-1">
                 <img src="@item.MobileItems[0].PictureUrl" class="img-fluid w-100" style="height: fit-content;" />
@@ -171,7 +171,7 @@
   <hr  style="width: 90%; background-color: #707070;">
 </div>
 
-<div class="d-none d-md-block mb-5">
+<div class="d-none d-md-block hidden-xs hidden-sm mb-5">
 </div>
 
 <div class="row">
@@ -189,7 +189,7 @@
 @Html.Action("HomepageBestSellers", "Product")
 
 @* Best Seller Desktop *@
-<div class="d-none d-md-block">
+<div class="d-none d-md-block hidden-xs hidden-sm">
   <div class="row mb-5">
     <div class="col-2 col-md-2 col-sm-2"></div>
     @for (int i = 0; i < 3; i++)
@@ -208,7 +208,7 @@
 </div>
 
 @* Best Seller Mobile *@
-<div class="row d-block d-md-none mb-5">
+<div class="row d-block d-md-none hidden-md hidden-xl mb-5">
   <div class="row" style="padding: 0 4rem; margin-top: -15px;">
     @for (int i = 0; i < 2; i++)
     {
@@ -234,7 +234,7 @@
       if (item.Id == 2)
       {
         if (item.DesktopItems.Any()) {
-          <div class="d-none d-md-block">
+          <div class="d-none d-md-block hidden-xs hidden-sm">
             <div class="d-flex justify-content-center">
               <hr  style="width: 90%; background-color: #707070;">
             </div>
@@ -248,7 +248,7 @@
               <div class="col-md-2"></div>
               @for (int i = 0; i < item.DesktopItems.Count(); i++) {
                 if (item.DesktopItems[i].Title.Contains("brand")) {
-                  <div class="col-6 col-md-2 col-sm-2 text-center p-3">
+                  <div class="col-6 col-md-2 col-sm-2 p-3" style="display: flex; justify-content: center; align-items: center;">
                     <img class="w-50" src="@item.DesktopItems[i].PictureUrl">
                   </div>
                 }
@@ -260,8 +260,8 @@
 
         if (item.MobileItems.Any())
           {
-            <div class="row d-block d-md-none carousel slide mb-3" data-ride="carousel" id="carouselExampleControlsBrand">
-              <div class="carousel-inner col-12 d-block d-md-block position-relative" style="height: 90px;">
+            <div class="row d-block d-md-none hidden-md hidden-xl carousel slide mb-3" data-ride="carousel" id="carouselExampleControlsBrand">
+              <div class="carousel-inner col-12 d-block d-md-block position-relative" style="height: 160px;">
                 @{
                   var firstactive = "active";
                   for (int z = 0; z < item.MobileItems.Count(); z++)
@@ -287,6 +287,8 @@
 
                       if (z+2 <= item.MobileItems.Count()) {
                         z = z+2;
+                      } else if (z < 0) {
+                        z = 0;
                       }
                     }
                   
@@ -333,12 +335,12 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <div class="carouseldesktop d-none d-md-block">
+        <div class="carouseldesktop d-none d-md-block hidden-xs hidden-sm">
           <div><img src="~/content/images/uploaded/homepage/thabs 2.png" class="img-fluid"></div>
           <div><img src="~/content/images/uploaded/homepage/thabs 3.png" class="img-fluid"></div>
           <div><img src="~/content/images/uploaded/homepage/thabs 4.png" class="img-fluid"></div>
         </div>
-        <div class="carouselmobile d-block d-md-none">
+        <div class="carouselmobile d-block d-md-none hidden-md hidden-xl">
           <div><img src="~/content/images/uploaded/homepage/thabs 2.png" class="img-fluid"></div>
           <div><img src="~/content/images/uploaded/homepage/thabs 3.png" class="img-fluid"></div>
           <div><img src="~/content/images/uploaded/homepage/thabs 4.png" class="img-fluid"></div>
@@ -347,8 +349,6 @@
 
     </div>
   </div> *@
-
-
 
 <input type="hidden" id="flag" value="0" />
 
