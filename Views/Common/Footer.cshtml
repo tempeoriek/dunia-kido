@@ -61,41 +61,18 @@
 <footer data-section-name="footer" style="border-top: 2px solid black;">
   @* desktop *@
   <div class="container d-none d-md-block hidden-sm hidden-xs">
-    @* <div class="row mt-2 mt-md-4 mb-5">
-      <div class="col-12 d-flex flex-column align-items-center">
-        <div class="newsletter">
-          <h3 class="text-center text-md-right mb-4" style="color:#707070;">SUSCRIBE TO THE NEWSLETTER</h3>
-          <div id="nieuwsbrief">
-            <form action="" method="post" id="mc-embedded-subscribe-form"
-                name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-              <div class="form-group d-flex justify-content-center mb-4 mb-md-0" style="vertical-align:top;">
-                <input id="mce-EMAIL" class="email form-footer" type="email" style="border: 1px solid; border-radius: 4px; padding: 14px; background-color: white;" name="EMAIL" placeholder="Your e-mail" value="" required="required" />
-                <button style="margin-left: -30px; margin-top: 0; id="mc-embedded-subscribe" type="submit" name="subscribe" value=""><img src="~/Themes/v1/Content/images/arrow-newsletter.png" /></button>
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0713301c8224b9979b17bdd9b_0e2ea9797e" id="b_0713301c8224b9979b17bdd9b_0e2ea9797e" tabindex="-1" value=""></div>
-              </div>
-            </form>
-            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-            <script type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
-          </div>
-          <div id="nieuwsbrief-msg" style="display:none;">
-            Thank you for subscribing!
-          </div>
-        </div>
-      </div>
-    </div> *@
-
     <div class="row m-1 mt-4">
       <div class="col-1 d-none d-md-block hidden-sm hidden-xs"></div>
 
       @* mailing list *@
       <div class="col-12 col-md-5">
         <a href="~/"><img src="~/Themes/v1/Content/images/logo.png" class="brandImage" /></a>
-        @* <a href="~/" style="font-size: 45px; color: #1B6B9E;">DUNIA KIDDO</a> *@
+        @* <a href="~/" style="font-size: 45px; color: #1B6B9E;">DUNIA KIDO</a> *@
         <p class="mt-4 p-0" style="font-size: 16px; margin: 0; font-weight: bold;">Join Our Mailinglist</p>
         <p style="font-size: 12px;">Find out first. Get our emails for info on new items, sales and more</p>
         <div class="mt-2">
           <div id="nieuwsbrief" style="width: 80%;">
-            <form action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <form style="margin-left: -2%;" action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
               <div class="form-group d-flex justify-content-center mb-4 mb-md-0" style="vertical-align:top;">
                 <input id="mce-EMAIL" class="email form-footer" type="email" style="border: 1px solid; border-radius: 4px; padding: 14px; background-color: white;" name="EMAIL" placeholder="Your e-mail" value="" required="required" />
                 <button id="mc-embedded-subscribe" style="margin-left: -30px; margin-top: 0; type="submit" name="subscribe" value=""><img src="~/Themes/v1/Content/images/arrow-newsletter.png" /></button>
@@ -109,7 +86,6 @@
             Thank you for subscribing!
           </div>
         </div>
-        <p style="bottom: 0; position: absolute;"> &#9400; Dunia Kido <script>document.write(new Date().getFullYear())</script>. site by <a href="http://flitts.com" target="_blank">flitts</a></p>
       </div>
 
       @* about *@
@@ -131,14 +107,9 @@
           {
             <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a>
           }
-
-          @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-          {
-            <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a>
-          }
-          <a href="~/order/ConfirmPayments">Confirm Payment</a>
+          @* <a href="~/order/ConfirmPayments">Confirm Payment</a>
           <a href="@Url.RouteUrl("CustomerOrders")">Order History</a>
-          <a href="~/contactus">Contact</a>
+          <a href="~/contactus">Contact</a> *@
         </div>
       </div>
 
@@ -152,16 +123,13 @@
         </div>
       </div>
     </div>
-    
-    @* <div class="row">
-      <div class="col-12 col-md-10 d-flex justify-content-center justify-content-md-end">
-        <p class="copyright-text">
-          &#9400; Thabs
-          <script>document.write(new Date().getFullYear())</script>. site by <a href="http://flitts.com" target="_blank">flitts</a>
-        </p>
+
+    <div class="row m-1">
+      <div class="col-1 d-none d-md-block hidden-sm hidden-xs"></div>
+      <div class="col-11" style="display: flex; justify-content: flex-start;">
+        <p style="bottom: 0; position: absolute;"> &#9400; PT. Dunia Kido Indonesia <script>document.write(new Date().getFullYear())</script>. | Site by <a href="http://flitts.com" target="_blank">Flitts</a></p>
       </div>
-      <div class="col-2 d-none d-md-block hidden-sm hidden-xs"></div>
-    </div> *@
+    </div>
 
   </div>
 
@@ -172,11 +140,11 @@
       <div class="row m-1 mt-4">
         <div class="col-12 p-2">
           <a href="~/"><img src="~/Themes/v1/Content/images/logo.png" class="brandImage" /></a>
-          @* <a href="~/" style="font-size: 25px; color: #1B6B9E; text-decoration: none;">DUNIA KIDDO</a> *@
+          @* <a href="~/" style="font-size: 25px; color: #1B6B9E; text-decoration: none;">DUNIA KIDO</a> *@
           <p class="mt-4 p-0" style="font-size: 13px; margin: 0; font-weight: bold;">Join Our Mailinglist</p>
           <p style="font-size: 12px;">Find out first. Get our emails for info on new items, sales and more</p>
-          <div id="nieuwsbrief">
-            <form action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div id="nieuwsbrief" style="width: 97%;">
+            <form style="margin-left: -2%;" action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
               <div class="form-group d-flex justify-content-center mb-4 mb-md-0" style="vertical-align:top;">
                 <input id="mce-EMAIL" class="email form-footer" type="email" style="border: 1px solid; border-radius: 4px; padding: 16px; background-color: white;" name="EMAIL" placeholder="Your e-mail" value="" required="required" />
                 <button id="mc-embedded-subscribe" style="margin-left: -30px; margin-top: 0; type="submit" name="subscribe" value=""><img src="~/Themes/v1/Content/images/arrow-newsletter.png" /></button>
@@ -194,7 +162,7 @@
         <div class="col-12 p-2">
           <div class="p-2" role="tab" id="HeadingOne" style="border-bottom: 1px solid lightgrey">
             <a style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              ABOUT DUNIA KIDDO
+              ABOUT DUNIA KIDO
             </a>
           </div>
           <div data-parent="#accordionLeftMenuFooter" id="collapseOne" class="p-2 collapse" role="tabpanel" aria-labelledby="HeadingOne" style="border-bottom: 1px solid lightgrey">
@@ -219,14 +187,6 @@
             {
               <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a> <br>
             }
-
-            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
-            {
-              <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a> <br>
-            }
-            <a href="~/order/ConfirmPayments">Confirm Payment</a> <br>
-            <a href="@Url.RouteUrl("CustomerOrders")">Order History</a> <br>
-            <a href="~/contactus">Contact</a> <br>
           </div>
         </div>
       </div>
@@ -248,7 +208,7 @@
       </div>
       
       <div class="row m-1 p-2">
-        <p> &#9400; Dunia Kido <script>document.write(new Date().getFullYear())</script>. site by <a href="http://flitts.com" target="_blank">flitts</a></p>
+        <p> &#9400; PT. Dunia Kido Indonesia <script>document.write(new Date().getFullYear())</script>. | Site by <a href="http://flitts.com" target="_blank">Flitts</a></p>
       </div>
     </div> 
   </div>

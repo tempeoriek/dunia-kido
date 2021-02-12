@@ -38,24 +38,37 @@
   
 
 @* header desktop *@
-<div class="row d-none d-md-block carousel" style="margin: -145px 0"> <img class="d-block w-100" src="~/Themes/v1/Content/images/banner-example.jpg"> </div>
+<div class="row d-none d-md-block carousel" style="margin: -145px 0"> 
+  @if (Model.PictureModel.ImageUrl != null) {
+    <img class="d-block w-100" src="@Model.PictureModel.ImageUrl"> 
+  }
+  @* <img class="d-block w-100" src="~/Themes/v1/Content/images/banner-example.jpg">  *@
+</div>
 
 @* logo banner desktop *@
-<div class="row mt-5 mb-2 d-none d-md-block" style="padding-top: 140px"> 
+@* <div class="row mt-5 mb-2 d-none d-md-block" style="padding-top: 140px"> 
   <div class="col-12 col-md-12 col-sm-12 d-flex justify-content-center">
-    <img src="~/Themes/v1/Content/images/banner-logo-example.jpg">
+    @if (Model.PictureModel.ImageUrl != null) {
+      <img src="@Model.PictureModel.ImageUrl">
+    }
   </div>
-</div>
+</div> *@
 
 @* header mobile *@
-<div class="row d-block d-md-none carousel" style="margin: 15px -30px"> <img class="d-block w-100" src="~/Themes/v1/Content/images/banner-example.jpg"> </div>
+<div class="row d-block d-md-none carousel" style="margin: 15px -30px"> 
+  @if (Model.PictureModel.ImageUrl != null) {
+    <img class="d-block w-100" src="@Model.PictureModel.ImageUrl"> 
+  }
+</div>
 
 @* logo banner mobile*@
-<div class="row mt-4 mb-2 d-block d-md-none"> 
+@* <div class="row mt-4 mb-2 d-block d-md-none"> 
   <div class="col-12 col-md-12 col-sm-12 d-flex justify-content-center">
-    <img src="~/Themes/v1/Content/images/banner-logo-example.jpg">
+    @if (Model.PictureModel.ImageUrl != null) {
+      <img src="@Model.PictureModel.ImageUrl">
+    }
   </div>
-</div>
+</div> *@
 
 @* mobile breadcrumb *@
 <div class="row mt-4 mb-2 d-block d-md-none" style="margin-top: 18%; margin-bottom: 5%;">
