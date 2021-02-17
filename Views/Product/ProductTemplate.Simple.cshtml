@@ -131,8 +131,8 @@
                       @* detail *@
                       <div class="row">
                         <div class="col-12 pt-2">
-                          <div class="p-2" role="tab" id="HeadingDescriptionOne" style="border-bottom: 2px solid #707070">
-                            <a style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionOne" aria-expanded="false" aria-controls="collapseDescriptionOne">
+                          <div class="p-2 head-prod-detail" role="tab" id="HeadingDescriptionOne" style="border-bottom: 2px solid #707070">
+                            <a class="acc-prod-detail" style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionOne" aria-expanded="false" aria-controls="collapseDescriptionOne">
                               DETAILS
                             </a>
                           </div>
@@ -146,9 +146,9 @@
 
                       @* dimensions *@
                       <div class="row">
-                        <div class="col-12 pt-2">
-                          <div class="p-2" role="tab" id="HeadingDescriptionTwo" style="border-bottom: 2px solid #707070">
-                            <a style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionTwo" aria-expanded="false" aria-controls="collapseDescriptionTwo">
+                        <div class="col-12 pt-2 head-prod-detail">
+                          <div class="p-2" role="tab" class="dimension-prod-detail" id="HeadingDescriptionTwo" style="border-bottom: 2px solid #707070">
+                            <a class="acc-prod-detail collapsed" style="font-weight: bold; font-size: 16px;" role="button" data-toggle="collapse" href="#collapseDescriptionTwo" aria-expanded="false" aria-controls="collapseDescriptionTwo">
                               DIMENSIONS
                             </a>
                           </div>
@@ -186,7 +186,7 @@
                 @*@Html.Partial("_BackInStockSubscription", Model)*@
 
                 <p class="out-of-stock" style="font-style:italic;">
-                  Sorry, this product is completely out of stock
+                  Sorry, this product is completely Sold Out
                 </p>
 
               }
@@ -250,7 +250,7 @@
               else
               {
                 <p class="out-of-stock" style="font-style:italic;">
-                  Sorry, this product is completely out of stock
+                  Sorry, this product is completely Sold Out
                 </p>
               }
             }
@@ -282,10 +282,21 @@
     {
       <div class="col-2 col-md-2 col-sm-2" style="margin-right: 3vw; margin-left: 3vw;">
         <div class="row">
-          <img class="d-block w-100" src="~/Themes/v1/Content/images/item-example.png">
+          <div class="ori-product-img">
+            <a href="#" class="clean">
+              <img src="~/Themes/v1/Content/images/item-example.png" class="img-fluid center-block" />
+            </a>
+
+            <a href="#" class="clean overlay-product-img">
+              <img src="~/Themes/v1/Content/images/item-example2.jpg" class="img-fluid center-block" />
+            </a>
+          </div>
         </div>
         <div class="row">
-          <p>Folder Mat <br> IDR 2.100.000</p>
+          <p style="margin: 0; padding: 0;">Folder Mat</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+          <p>IDR 2.100.000</p>
         </div>
       </div>
     }
@@ -295,12 +306,25 @@
 
 @* Related Products Mobile *@
 <div class="row d-block d-md-none mb-5">
-  <div class="row" style="padding: 0 4rem; margin-top: -15px;">
+  <div class="row" style="padding: 0 2rem; margin-top: -15px;">
     @for (int i = 0; i < 2; i++)
     {
-      <div class="col-6 col-md-6">
-        <img class="d-block" style="width: inherit;" src="~/Themes/v1/Content/images/item-example.png">
-        <p style="color: #707070;">Folder Mat <br> IDR 2.100.000</p>
+      <div class="col-6 col-md-6" style="padding: 10px !important;">
+        <div class="ori-product-img">
+          <a href="" class="clean">
+            <img src="~/Themes/v1/Content/images/item-example.png" class="img-fluid center-block" />
+          </a>
+
+          <a href="" class="clean overlay-product-img">
+            <img src="~/Themes/v1/Content/images/item-example2.jpg" class="img-fluid center-block" />
+          </a>
+        </div>
+        <div class="row">
+          <p style="margin: 0; padding: 0; color: #707070;">Folder Mat</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+          <p class="color: #707070;">IDR 2.100.000</p>
+        </div>
       </div>
     }
   </div>

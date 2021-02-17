@@ -103,15 +103,15 @@
               <div class="col-6 home-brand-img" id="hoverItem-@item.DesktopItems[0].Id" style="padding: 10px !important">
                 <a href="#">
                   <img src="@item.DesktopItems[0].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
-                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;">@item.DesktopItems[0].Title.ToUpper()</p></div>
-                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;">Explore Now</p></div>
+                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;"><a href="@item.DesktopItems[0].NavigateTo" style="color: white;">@item.DesktopItems[0].Title.ToUpper()</a></p></div>
+                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;"><a href="@item.DesktopItems[0].NavigateTo" style="color: white;">Explore Now</a></p></div>
                 </a>
               </div>
               <div class="col-4 home-brand-img" id="hoverItem-@item.DesktopItems[1].Id" style="padding: 10px !important">
                 <a href="#">
                   <img src="@item.DesktopItems[1].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
-                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;">@item.DesktopItems[1].Title.ToUpper()</p></div>
-                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;">Explore Now</p></div>
+                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;"><a href="@item.DesktopItems[1].NavigateTo" style="color: white;">@item.DesktopItems[1].Title.ToUpper()</a></p></div>
+                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;"><a href="@item.DesktopItems[1].NavigateTo" style="color: white;">Explore Now</a></p></div>
                 </a>
               </div>
             <div class="col-1"></div>
@@ -123,15 +123,15 @@
               <div class="col-4 home-brand-img" id="hoverItem-@item.DesktopItems[2].Id" style="padding: 10px !important">
                 <a href="#">
                   <img src="@item.DesktopItems[2].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
-                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;">@item.DesktopItems[2].Title.ToUpper()</p></div>
-                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;">Explore Now</p></div>
+                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;"><a href="@item.DesktopItems[2].NavigateTo" style="color: white;">@item.DesktopItems[2].Title.ToUpper()</a></p></div>
+                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;"><a href="@item.DesktopItems[2].NavigateTo" style="color: white;">Explore Now</a></p></div>
                 </a>
               </div>
               <div class="col-6 home-brand-img" id="hoverItem-@item.DesktopItems[3].Id" style="padding: 10px !important">
                 <a href="#">
                   <img src="@item.DesktopItems[3].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
-                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;">@item.DesktopItems[3].Title.ToUpper()</p></div>
-                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;">Explore Now</p></div>
+                  <div class="overlay-home-brand-img"><p style="font-weight: bold; font-size: 24px;"><a href="@item.DesktopItems[3].NavigateTo" style="color: white;">@item.DesktopItems[3].Title.ToUpper()</a></p></div>
+                  <div class="overlay-bottom-home-brand-img"><p style="font-weight: bold; font-size: 16px;"><a href="@item.DesktopItems[3].NavigateTo" style="color: white;">Explore Now</a></p></div>
                 </a>
               </div>
               <div class="col-1"></div>
@@ -142,20 +142,31 @@
         if (item.MobileItems.Any()) {
           <div class="container d-block d-md-none hidden-md hidden-xl">
             <div class="row ml-4 mr-4">
-              <div class="col-7 p-1">
-                <img src="@item.MobileItems[0].PictureUrl" class="img-fluid w-100" style="height: fit-content;" />
+              <div class="col-7 p-1 mobile-hover">
+                <img src="@item.MobileItems[0].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
+                <div class="overlay-mobile-brand-img"><a href="@item.MobileItems[0].NavigateTo" style="color: white; font-weight: bold; font-size: 16px;">@item.MobileItems[0].Title.ToUpper()</a></div>
+                <div class="overlay-bottom-mobile-brand-img"><a href="@item.MobileItems[0].NavigateTo" style="color: white; font-weight: bold; font-size: 12px;">Explore Now</a></div>
               </div>
-              <div class="col-5 p-1">
-                <img src="@item.MobileItems[1].PictureUrl" class="img-fluid w-100" style="height: fit-content;" />
+              <div class="col-5 p-1 mobile-hover">
+                @* <img src="@item.MobileItems[1].PictureUrl" class="mobile-hover img-fluid w-100" style="height: fit-content;" /> *@
+                <img src="@item.MobileItems[1].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
+                <div class="overlay-mobile-brand-img"><a href="@item.MobileItems[1].NavigateTo" style="color: white; font-weight: bold; font-size: 16px;">@item.MobileItems[1].Title.ToUpper()</a></div>
+                <div class="overlay-bottom-mobile-brand-img"><a href="@item.MobileItems[1].NavigateTo" style="color: white; font-weight: bold; font-size: 12px;">Explore Now</a></div>
               </div>
             </div>
 
             <div class="row ml-4 mr-4">
-              <div class="col-5 p-1">
-                <img src="@item.MobileItems[2].PictureUrl" class="img-fluid w-100" style="height: fit-content;" />
+              <div class="col-5 p-1 mobile-hover">
+                @* <img src="@item.MobileItems[2].PictureUrl" class="mobile-hover img-fluid w-100" style="height: fit-content;" /> *@
+                <img src="@item.MobileItems[2].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
+                <div class="overlay-mobile-brand-img"><a href="@item.MobileItems[2].NavigateTo" style="color: white; font-weight: bold; font-size: 16px;">@item.MobileItems[2].Title.ToUpper()</a></div>
+                <div class="overlay-bottom-mobile-brand-img"><a href="@item.MobileItems[2].NavigateTo" style="color: white; font-weight: bold; font-size: 12px;">Explore Now</a></div>
               </div>
-              <div class="col-7 p-1">
-                <img src="@item.MobileItems[3].PictureUrl" class="img-fluid w-100" style="height: fit-content;" />
+              <div class="col-7 p-1 mobile-hover">
+                @* <img src="@item.MobileItems[3].PictureUrl" class="mobile-hover img-fluid w-100" style="height: fit-content;" /> *@
+                <img src="@item.MobileItems[3].PictureUrl" class="img-fluid w-100" style="height: 100%;" />
+                <div class="overlay-mobile-brand-img"><a href="@item.MobileItems[3].NavigateTo" style="color: white; font-weight: bold; font-size: 16px;">@item.MobileItems[3].Title.ToUpper()</a></div>
+                <div class="overlay-bottom-mobile-brand-img"><a href="@item.MobileItems[3].NavigateTo" style="color: white; font-weight: bold; font-size: 12px;">Explore Now</a></div>
               </div>
             </div>
           </div>
@@ -167,11 +178,8 @@
   }
 }
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-5">
   <hr  style="width: 90%; background-color: #707070;">
-</div>
-
-<div class="d-none d-md-block hidden-xs hidden-sm mb-5">
 </div>
 
 <div class="row">
@@ -196,10 +204,21 @@
     {
       <div class="col-2 col-md-2 col-sm-2" style="margin-right: 3vw; margin-left: 3vw;">
         <div class="row">
-          <img class="d-block w-100" src="~/Themes/v1/Content/images/item-example.png">
+          <div class="ori-product-img">
+            <a href="#" class="clean">
+              <img src="~/Themes/v1/Content/images/item-example.png" class="img-fluid center-block" />
+            </a>
+
+            <a href="#" class="clean overlay-product-img">
+              <img src="~/Themes/v1/Content/images/item-example2.jpg" class="img-fluid center-block" />
+            </a>
+          </div>
         </div>
         <div class="row">
-          <p>Folder Mat <br> IDR 2.100.000</p>
+          <p style="margin: 0; padding: 0;">Folder Mat</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+          <p>IDR 2.100.000</p>
         </div>
       </div>
     }
@@ -208,13 +227,27 @@
 </div>
 
 @* Best Seller Mobile *@
-<div class="row d-block d-md-none hidden-md hidden-xl mb-5">
+<div class="row d-block d-md-none hidden-md hidden-xl">
   <div class="row" style="padding: 0 4rem; margin-top: -15px;">
     @for (int i = 0; i < 2; i++)
     {
-      <div class="col-6 col-md-6">
-        <img class="d-block" style="width: inherit;" src="~/Themes/v1/Content/images/item-example.png">
-        <p style="color: #707070;">Folder Mat <br> IDR 2.100.000</p>
+      <div class="col-6 col-md-6" style="padding: 10px !important;">
+        <div class="ori-product-img">
+          <a href="" class="clean">
+            <img src="~/Themes/v1/Content/images/item-example.png" class="img-fluid center-block" />
+          </a>
+
+          <a href="" class="clean overlay-product-img">
+            <img src="~/Themes/v1/Content/images/item-example2.jpg" class="img-fluid center-block" />
+          </a>
+        </div>
+        @* <img class="d-block" style="width: inherit;" src="~/Themes/v1/Content/images/item-example.png"> *@
+        <div class="row">
+          <p style="margin: 0; padding: 0; color: #707070;">Folder Mat</p>
+        </div>
+        <div class="row" style="margin-top: -10px;">
+          <p class="color: #707070;">IDR 2.100.000</p>
+        </div>
       </div>
     }
   </div>
@@ -235,11 +268,11 @@
       {
         if (item.DesktopItems.Any()) {
           <div class="d-none d-md-block hidden-xs hidden-sm">
-            <div class="d-flex justify-content-center">
-              <hr  style="width: 90%; background-color: #707070;">
+            <div class="d-flex justify-content-center mb-5">
+              <hr  style="width: 90%; background-color: #707070; margin: 0;">
             </div>
             <div class="row mb-5">
-              <div class="col-12 col-md-12 mt-5 d-flex justify-content-center">
+              <div class="col-12 col-md-12 d-flex justify-content-center">
                 <h1 style="color: #707070; font-weight: bold;">OUR BRANDS</h1>
               </div>
             </div>

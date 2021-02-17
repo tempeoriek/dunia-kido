@@ -63,7 +63,7 @@
     
         @if (Model.MarkAsNew) {
           <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
-            <p class="pt-2" style="color: white; font-size: 7px;">NEW</p>
+            <p class="pt-2 d-flex justify-content-center align-items-center" style="color: white; font-size: 12px;">NEW</p>
           </div>
         } 
       </div>
@@ -79,11 +79,11 @@
 
         @if (Model.Quantity == 0) {
           <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
-            <p class="pt-2" style="color: white; font-size: 6px;">OUT OF STOCK</p>
+            <p class="pt-2 d-flex justify-content-center align-items-center" style="color: white; font-size: 10px;">Sold Out</p>
           </div>
         } else if (Model.MarkAsNew) {
           <div style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
-            <p class="pt-2" style="color: white; font-size: 7px;">NEW</p>
+            <p class="pt-2 d-flex justify-content-center align-items-center" style="color: white; font-size: 12px;">NEW</p>
           </div>
         } 
       </div>
