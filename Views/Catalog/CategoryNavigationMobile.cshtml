@@ -176,7 +176,7 @@
     <div class="d-block d-md-none hidden-md hidden-lg" style="border-top: 1px solid lightgrey;">
       @if (category.SubCategories.Any()) {
         <div class="p-2 head-prod-detail" role="tab" id="Headingmenu-@category.SeName">
-          <a id="id-acc-category-@category.Id" class="child-acc-category-@category.Id collapsed" style="font-size: 22px; font-weight: 500;" role="button" data-toggle="collapse" href="#collapsemenu-@category.SeName" aria-expanded="false" aria-controls="collapsemenu-@category.SeName">
+          <a id="id-acc-category-@category.Id" class="child-acc-category-@category.Id collapsed" style="font-size: 17px; font-weight: 500;" role="button" data-toggle="collapse" href="#collapsemenu-@category.SeName" aria-expanded="false" aria-controls="collapsemenu-@category.SeName">
             @category.Name.ToUpper()
           </a>
         </div>
@@ -184,12 +184,12 @@
         <div data-parent="#accordionMobileMenu" id="collapsemenu-@category.SeName" class="p-2 collapse" role="tabpanel" aria-labelledby="Headingmenu-@category.SeName" style="border-top: 1px solid lightgrey; padding-top: 10px !important; padding-bottom: 10px !important;">
           @foreach (var subcat in category.SubCategories)
           {
-            <div><a style="font-size: 17px;" href="@Url.RouteUrl("Category", new { SeName = subcat.SeName })">@subcat.Name.ToUpper()</a></div>
+            <div><a style="font-size: 15px;" href="@Url.RouteUrl("Category", new { SeName = subcat.SeName })">@subcat.Name.ToUpper()</a></div>
           }
         </div>
       } else {
         <div class="p-2" role="tab" id="Headingmenu-@category.SeName">
-          <a style="font-weight: 500; font-size: 22px;" role="button" href="@category.SeName">
+          <a style="font-weight: 500; font-size: 17px;" role="button" href="@category.SeName">
             @category.Name.ToUpper()
           </a>
         </div>
