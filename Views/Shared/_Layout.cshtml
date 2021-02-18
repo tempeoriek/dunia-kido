@@ -9,7 +9,7 @@
     <title>@Html.NopTitle(true)</title>
     <meta name="description" content="@(Html.NopMetaDescription())" />
     <meta name="keywords" content="@(Html.NopMetaKeywords())" />
-    <meta name="Author" content="Thabs">
+    <meta name="Author" content="Dunia Kido">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,8 +22,9 @@
     <meta name="theme-color" content="#FFFFFF">
     <link href="~/favicon.ico" rel="shortcut icon">
 
-    @Styles.Render("~/Content/bootstrapcss")
+    @*@Styles.Render("~/Content/bootstrapcss")*@
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 
     <link href="~/Themes/v1/Content/Layout.css" rel="stylesheet" />
@@ -34,35 +35,28 @@
     @Styles.Render("~/app/css")
 
 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+
+
     @Html.Partial("Head")
 
     @if (displayMiniProfiler)
     {
-        @StackExchange.Profiling.MiniProfiler.RenderIncludes();
-    }
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"  crossorigin="anonymous"></script>
-
-  
-
-    @*@Scripts.Render("~/bundles/jquery")*@
+@StackExchange.Profiling.MiniProfiler.RenderIncludes();
+} @*@Scripts.Render("~/bundles/jquery")*@
 
     @Html.NopCanonicalUrls()
 
     @if (IsSectionDefined("RootHeaderSection"))
     {
-        @RenderSection("RootHeaderSection", false)
-    }
+@RenderSection("RootHeaderSection", false)}
 
-    @{
-        var scrollspy = "";
+    @{ var scrollspy = "";
         if (ViewBag.UseScrollSpy != null)
         {
             scrollspy = "data-spy=scroll data-target=#productgallery";
-        }
-    }
+        } }
 
 
 </head>
@@ -73,7 +67,12 @@
         @RenderBody()
     </div>
 
-    @Scripts.Render("~/bundles/bootstrapjs")
+    @*@Scripts.Render("~/bundles/bootstrapjs")*@
+
+
+    @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
 
     @*dropdown hover*@
     <script src="~/Scripts/modernizr.js"></script>
@@ -93,8 +92,7 @@
 
     @if (IsSectionDefined("RootScripts"))
     {
-        @RenderSection("RootScripts", required: false)
-    }
+@RenderSection("RootScripts", required: false)}
 
 
     <script type="text/javascript">
