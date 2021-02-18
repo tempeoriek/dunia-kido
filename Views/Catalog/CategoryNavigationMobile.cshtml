@@ -149,7 +149,7 @@
     <div class="header-links">
       <div class="d-block d-md-none hidden-md hidden-lg">
         @if (category.SubCategories.Any()) {
-          <div role="tab" id="Headingheader-@category.SeName">
+          <div role="tab" id="Headingheader-@category.SeName" class="mb-2">
             <a style="font-size: 22px;" data-toggle="collapse" href="#collapseheader-@category.SeName" aria-expanded="false" aria-controls="collapseheader-@category.SeName">
               @category.Name.ToUpper()
             </a>
@@ -158,11 +158,11 @@
           <div data-parent="#accMobileHeader" id="collapseheader-@category.SeName" class="collapse"  role="tabpanel" aria-labelledby="Headingheader-@category.SeName">
               @foreach (var subcat in category.SubCategories)
               {
-                <div style="padding-left: 3%;"><a style="font-size: 17px;" href="@Url.RouteUrl("Category", new { SeName = subcat.SeName })">@subcat.Name.ToUpper()</a></div>
+                <div class="mb-2" style="padding-left: 3%;"><a style="font-size: 17px;" href="@Url.RouteUrl("Category", new { SeName = subcat.SeName })">@subcat.Name.ToUpper()</a></div>
               }
           </div>
         } else {
-          <div role="tab" id="Headingheader-@category.SeName">
+          <div role="tab" id="Headingheader-@category.SeName" class="mb-2">
             <a href="/@category.SeName" style="font-size: 22px;">
               @category.Name.ToUpper()
             </a>
