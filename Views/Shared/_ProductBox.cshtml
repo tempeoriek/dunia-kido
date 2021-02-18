@@ -11,15 +11,23 @@
             }
 
             @if (Model.Quantity == 0) {
-              <div class="d-flex justify-content-center align-items-center" style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+              <div class="d-none d-md-block hidden-sm hidden-xs justify-content-center align-items-center" style="display: flex !important; position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
                 <p style="margin: 0; color: white; font-size: 12px;">SOLD</p>
+              </div>
+
+              <div class="d-block d-md-none hidden-md hidden-lg d-flex justify-content-center align-items-center" style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+                <p style="margin: 0; color: white; font-size: 10px;">SOLD</p>
               </div>
             }
 
             @if (Model.MarkAsNew)
             {
-              <div class="d-flex justify-content-center align-items-center" style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+              <div class="d-none d-md-block hidden-sm hidden-xs justify-content-center align-items-center" style="display: flex !important; position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
                 <p style="margin: 0; color: white; font-size: 12px;">NEW</p>
+              </div>
+
+              <div class="d-block d-md-none hidden-md hidden-lg d-flex justify-content-center align-items-center" style="position: absolute; top: 0; right: 0; height: 45px; width: 45px; background-color: black; border-radius: 10px;">
+                <p style="margin: 0; color: white; font-size: 10px;">NEW</p>
               </div>
             }
         </div>
