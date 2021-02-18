@@ -67,60 +67,56 @@
 	@* <div class="container main-bar fixed-top d-none d-md-block hidden-xs hidden-sm "> *@
 	<div class="fixed-top d-none d-md-block hidden-xs hidden-sm  pt-3" style="background-color: white;">
 		<div class="row">
-			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-end">
+			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
 				<a class="navbar-brand" style="font-size: 12.8px;" href="~/order/ConfirmPayments">PAYMENT CONFIRMATION</a>
 			</div>
 			<div class="col-6"></div>
 			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-start">
 				@* search headers *@
-				<div class="d-none d-sm-block d-flex justify-content-center">
-					<div class="">
-						<div class="show-mobile-menu-btn" style="cursor:pointer;">
-							<img src="~/Themes/v1/Content/images/search-icon.png" />
-						</div>
+				<div class="d-none d-sm-block justify-content-center align-items-center" style="display: flex!important;">
+					<div class="show-mobile-menu-btn" style="cursor:pointer;">
+						<img src="~/Themes/v1/Content/images/search-icon.png" />
 					</div>
 				</div>
 
 				@* form input search *@
-				<div class="form-input-search d-none d-sm-block pl-2 d-flex justify-content-center search-text-homepage" style="max-width: inherit;">
+				<div class="form-input-search d-none d-sm-block pl-2 d-flex justify-content-center align-items-center search-text-homepage" style="max-width: inherit;">
 					<form action="~/search" autocomplete="on">
 						<input class="search-nav-2" id="search" name="q" type="text">
 					</form>
 				</div>
 				
 				@* login and account headers *@
-				<div class="pr-5 pl-5 d-flex justify-content-center">
-					<div>
-						<ul class="list-unstyled list-inline">
-							@if (Model.IsAuthenticated)
-							{
-								<li>
-									<div class="dropdown">
-										<a href="#" class="nav-item"><img src="~/Themes/v1/Content/images/account-icon.png" /></a>
-										<div class="dropdown-content2 text-left">
-											<a href="~/order/ConfirmPayments">Confirm Payment</a>
-											<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
-											<a href="@Url.RouteUrl("CustomerInfo")">Personal Info</a>
-											<a href="@Url.RouteUrl("CustomerChangePassword")">Change Password</a>
-											<a href="~/customer/addressAdd">Address Book</a>
-											<a href="@Url.RouteUrl("Logout")"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Logout</a>
-										</div>
+				<div class="pr-5 pl-5 d-flex justify-content-center align-items-center">
+					<ul class="list-unstyled list-inline" style="margin: 0;">
+						@if (Model.IsAuthenticated)
+						{
+							<li>
+								<div class="dropdown">
+									<a href="#" class="nav-item"><img src="~/Themes/v1/Content/images/account-icon.png" /></a>
+									<div class="dropdown-content2 text-left">
+										<a href="~/order/ConfirmPayments">Confirm Payment</a>
+										<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
+										<a href="@Url.RouteUrl("CustomerInfo")">Personal Info</a>
+										<a href="@Url.RouteUrl("CustomerChangePassword")">Change Password</a>
+										<a href="~/customer/addressAdd">Address Book</a>
+										<a href="@Url.RouteUrl("Logout")"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Logout</a>
 									</div>
-								</li>
+								</div>
+							</li>
 
 
-							}
-							else
-							{
-								<li> <a href="~/login" class="signin btn-login mr-2"><img src="~/Themes/v1/Content/images/account-icon.png"/></a></li>
-							}
-						</ul>
-					</div>
+						}
+						else
+						{
+							<li> <a href="~/login" class="signin btn-login mr-2"><img src="~/Themes/v1/Content/images/account-icon.png"/></a></li>
+						}
+					</ul>
 				</div>
 
 
 				@* cart headers *@
-				<div class="pr-5 d-flex justify-content-center">
+				<div class="pr-5 d-flex justify-content-center align-items-center">
 					@if (Model.ShoppingCartEnabled)
 					{
 						var cartItem = "0";
@@ -131,11 +127,10 @@
 							cssCartItem = "shopping-bag";
 						}
 						<a href="#bag" onclick="$('.aside').asidebar('open')">
-							<div id="icbag-panel" class="@cssCartItem nav-item">
-								<img src="~/Themes/v1/Content/images/cart-icon.png" />
+							<div id="icbag-panel" class="@cssCartItem nav-item row">
+								<img src="~/Themes/v1/Content/images/cart-icon.png" style="object-fit: contain;" />
 							</div>
 						</a>
-
 					}
 
 				</div>
@@ -226,7 +221,15 @@
 								cartItem = string.Format("{0}", Model.ShoppingCartItems);
 								cssCartItem = "bag";
 							}
-							<a href="#bag" onclick="$('.aside').asidebar('open')"><div id="icbag-panel" class="@cssCartItem align-items-center d-flex"><span id="mCartItemsQty" class="xans-element-xans-layout xans-layout-orderbasketcount cart-qty"><span class="nav-item" style="color:#707070;margin-left:-8px;"><img src="~/Themes/v1/Content/images/cart-icon.png" style="width:22px;" /> </span></span></a>
+							<a href="#bag" onclick="$('.aside').asidebar('open')">
+								<div id="icbag-panel" class="@cssCartItem align-items-center d-flex">
+									<span id="mCartItemsQty" class="xans-element-xans-layout xans-layout-orderbasketcount cart-qty">
+										<span class="nav-item" style="color:#707070;margin-left:-8px;">
+											<img src="~/Themes/v1/Content/images/cart-icon.png" style="width:22px;" /> 
+										</span>
+									</span>
+								</div>
+							</a>
 						}
 					</div>
 
@@ -251,8 +254,8 @@
 									@if (Model.IsAuthenticated)
 									{
 										<li class="dropdown dropright-list">
-											<a href="~/order/ConfirmPayments" class="dropbtn" style="font-size:12.8px;">Payment Confirmation</a>
-											<a href="@Url.RouteUrl("CustomerInfo")" class="dropbtn" style="font-size:12px;" data-toggle="collapse" data-target="#collapse-nav2" aria-expanded="false" aria-controls="collapse-nav2">My Account</a>
+											<a href="~/order/ConfirmPayments" class="dropbtn" style="font-size:22px;">Payment Confirmation</a>
+											<a href="@Url.RouteUrl("CustomerInfo")" class="dropbtn" style="font-size:22px;" data-toggle="collapse" data-target="#collapse-nav2" aria-expanded="false" aria-controls="collapse-nav2">My Account</a>
 											<div class="collapse" id="collapse-nav2" style="font-size:12px; padding-left: 22px;">
 												<a href="~/order/ConfirmPayments">Confirm Payment</a>
 												<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
@@ -299,59 +302,55 @@
 
 	<div class="d-none d-md-block hidden-xs hidden-sm  pt-3" style="background-color: white;">
 		<div class="row">
-			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-end">
+			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
 				<a href="~/order/ConfirmPayments" style="font-size:12.8px;">PAYMENT CONFIRMATION</a>
 			</div>
 			<div class="col-6"></div>
 			<div class="col-3 col-md-3 col-sm-6 d-flex justify-content-start">
 
 				@* search headers *@
-				<div class="d-none d-sm-block">
-					<div class="">
-						<div class="show-mobile-menu-btn" style="cursor:pointer;"><img src="~/Themes/v1/Content/images/search-icon.png" /></div>
-					</div>
+				<div class="d-none d-sm-block justify-content-center align-items-center" style="display: flex!important;">
+					<div class="show-mobile-menu-btn" style="cursor:pointer;"><img src="~/Themes/v1/Content/images/search-icon.png" /></div>
 				</div>
 				
 				@* form input search *@
-				<div class="form-input-search d-none d-sm-block pl-2 d-flex justify-content-center search-text-homepage" style="max-width: inherit;">
+				<div class="form-input-search d-none d-sm-block pl-2 d-flex justify-content-center align-items-center search-text-homepage" style="max-width: inherit;">
 					<form action="~/search" autocomplete="on">
 						<input class="search-nav-2" id="search" name="q" type="text">
 					</form>
 				</div>
 
 				@* login and account headers *@
-				<div class="pr-5 pl-5">
-					<div>
-						<ul class="list-unstyled list-inline">
-							@if (Model.IsAuthenticated)
-							{
-								<li>
-									<div class="dropdown">
-										<a href="#" class="nav-item"><img src="~/Themes/v1/Content/images/account-icon.png"/></a>
-										<div class="dropdown-content2 text-left">
-											<a href="~/order/ConfirmPayments">Confirm Payment</a>
-											<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
-											<a href="@Url.RouteUrl("CustomerInfo")">Personal Info</a>
-											<a href="@Url.RouteUrl("CustomerChangePassword")">Change Password</a>
-											<a href="~/customer/addressAdd">Address Book</a>
-											<a href="@Url.RouteUrl("Logout")"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Logout</a>
-										</div>
+				<div class="pr-5 pl-5 d-flex justify-content-center align-items-center">
+					<ul class="list-unstyled list-inline" style="margin: 0;">
+						@if (Model.IsAuthenticated)
+						{
+							<li>
+								<div class="dropdown">
+									<a href="#" class="nav-item"><img src="~/Themes/v1/Content/images/account-icon.png"/></a>
+									<div class="dropdown-content2 text-left">
+										<a href="~/order/ConfirmPayments">Confirm Payment</a>
+										<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
+										<a href="@Url.RouteUrl("CustomerInfo")">Personal Info</a>
+										<a href="@Url.RouteUrl("CustomerChangePassword")">Change Password</a>
+										<a href="~/customer/addressAdd">Address Book</a>
+										<a href="@Url.RouteUrl("Logout")"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Logout</a>
 									</div>
-								</li>
+								</div>
+							</li>
 
 
-							}
-							else
-							{
-								<li> <a href="~/login" class="signin btn-login mr-2"><img src="~/Themes/v1/Content/images/account-icon.png"/></a></li>
-							}
-						</ul>
-					</div>
+						}
+						else
+						{
+							<li> <a href="~/login" class="signin btn-login mr-2"><img src="~/Themes/v1/Content/images/account-icon.png"/></a></li>
+						}
+					</ul>
 				</div>
 
 
 				@* cart headers *@
-				<div class="pr-5">
+				<div class="pr-5 d-flex justify-content-center align-items-center">
 					@if (Model.ShoppingCartEnabled)
 					{
 						var cartItem = "0";
@@ -361,7 +360,12 @@
 							cartItem = string.Format("{0}", Model.ShoppingCartItems);
 							cssCartItem = "shopping-bag";
 						}
-						<a href="#bag" onclick="$('.aside').asidebar('open')"><div id="icbag-panel" class="@cssCartItem nav-item"><img src="~/Themes/v1/Content/images/cart-icon.png" /><div id="mCartItemsQty" class="cart-qty"> </div></div></a>
+						<a href="#bag" onclick="$('.aside').asidebar('open')">
+							<div id="icbag-panel" class="@cssCartItem nav-item row">
+								<img src="~/Themes/v1/Content/images/cart-icon.png" style="object-fit: contain;"/>
+								<div id="mCartItemsQty" class="cart-qty"></div>
+							</div>
+						</a>
 
 					}
 
@@ -431,7 +435,14 @@
 								cartItem = string.Format("{0}", Model.ShoppingCartItems);
 								cssCartItem = "bag";
 							}
-							<a href="#bag" onclick="$('.aside').asidebar('open')"><div id="icbag-panel" class="@cssCartItem align-items-center d-flex"><span id="mCartItemsQty" class="xans-element-xans-layout xans-layout-orderbasketcount cart-qty"><span style="color:#707070;margin-left:-8px;"><img src="~/Themes/v1/Content/images/cart-icon.png" style="width:22px;" /> </span></span></a>
+							<a href="#bag" onclick="$('.aside').asidebar('open')">
+								<div id="icbag-panel" class="@cssCartItem align-items-center d-flex">
+									<span id="mCartItemsQty" class="xans-element-xans-layout xans-layout-orderbasketcount cart-qty">
+										<span style="color:#707070;margin-left:-8px;">
+											<img src="~/Themes/v1/Content/images/cart-icon.png" style="width:22px;" /> 
+										</span>
+									</span>
+								</a>
 						}
 					</div>
 
@@ -455,8 +466,8 @@
 									@if (Model.IsAuthenticated)
 									{
 										<li class="dropdown dropright-list">
-											<a href="~/order/ConfirmPayments" class="dropbtn" style="font-size:12px;">Payment Confirmation</a>
-											<a href="@Url.RouteUrl("CustomerInfo")" class="dropbtn" style="font-size:12px;" data-toggle="collapse" data-target="#collapse-nav2" aria-expanded="false" aria-controls="collapse-nav2">My Account</a>
+											<a href="~/order/ConfirmPayments" class="dropbtn" style="font-size:22px;">Payment Confirmation</a>
+											<a href="@Url.RouteUrl("CustomerInfo")" class="dropbtn" style="font-size:22px;" data-toggle="collapse" data-target="#collapse-nav2" aria-expanded="false" aria-controls="collapse-nav2">My Account</a>
 											<div class="collapse" id="collapse-nav2" style="font-size:12px; padding-left: 22px;">
 												<a href="~/order/ConfirmPayments">Confirm Payment</a>
 												<a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a>
