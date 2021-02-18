@@ -123,8 +123,8 @@
   @* DESKTOP MENU CATALOG NAVIGATION *@
   <div class="d-none d-md-block hidden-xs hidden-sm" style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-top: 1px solid lightgrey">
     @if (category.SubCategories.Any()) {
-      <div class="p-2" role="tab" id="Heading-@category.SeName">
-        <a style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapse-@category.SeName" aria-expanded="false" aria-controls="collapse-@category.SeName">
+      <div class="p-2 head-prod-detail" role="tab" id="Heading-@category.SeName">
+        <a id="id-acc-category-@category.Id" class="child-acc-category-@category.Id collapsed" style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapse-@category.SeName" aria-expanded="false" aria-controls="collapse-@category.SeName">
           @category.Name.ToUpper()
         </a>
       </div>
@@ -175,8 +175,8 @@
   <div class="mobile-category-menu">
     <div class="d-block d-md-none hidden-md hidden-lg" style="border-top: 1px solid lightgrey;">
       @if (category.SubCategories.Any()) {
-        <div class="p-2 " role="tab" id="Headingmenu-@category.SeName">
-          <a style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapsemenu-@category.SeName" aria-expanded="false" aria-controls="collapsemenu-@category.SeName">
+        <div class="p-2 head-prod-detail" role="tab" id="Headingmenu-@category.SeName">
+          <a id="id-acc-category-@category.Id" class="child-acc-category-@category.Id collapsed" style="font-weight: 500;" role="button" data-toggle="collapse" href="#collapsemenu-@category.SeName" aria-expanded="false" aria-controls="collapsemenu-@category.SeName">
             @category.Name.ToUpper()
           </a>
         </div>
@@ -199,3 +199,32 @@
   </div>
 }
 
+
+<script>
+  $(function() {
+    $("a[id^='id-acc-category-']").click(function() {
+      var ids = [];
+      var className = $(this).attr("class");
+      var id_press = parseInt(className.replace("child-acc-category-", ""), 10);
+
+      $('a[class*="child-acc-category-"]').each(function () {
+        var other_id = parseInt(this.id.replace("id-acc-category-", ""), 10);
+        if (id_press != other_id) {
+          var class_name = "child-acc-category-"+other_id;
+          $("."+class_name).addClass("collapsed");
+        } else {
+          var class_name = "child-acc-category-"+id_press;
+          setTimeout(function(){
+            $("."+class_name).removeClass("collapsed");
+          }, 10);
+
+          if (id_press && !className.includes("collapsed")) {
+            setTimeout(function(){
+              $("."+class_name).addClass("collapsed");
+            }, 10);
+          }
+        }
+      });
+    });
+  });
+</script>

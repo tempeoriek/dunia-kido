@@ -570,6 +570,21 @@ footer .social-icon {}
 .brandImage {}
 
 /* HOVER home - brand image */
+.head-prod-detail a[class*="child-acc-category-"]:after {
+    /* symbol for "opening" panels */
+    content: "-";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.head-prod-detail a[class*="child-acc-category-"].collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "+";    /* adjust as needed, taken from bootstrap.css */
+}
+a[class*="child-acc-category-"] {
+    content: "-";
+}
+
+
 .head-prod-detail .acc-prod-detail:after {
     /* symbol for "opening" panels */
     content: "-";    /* adjust as needed, taken from bootstrap.css */
@@ -583,6 +598,7 @@ footer .social-icon {}
 .acc-prod-detail {
     content: "-";
 }
+
 /* for mobile */
 .mobile-hover:hover  .overlay-mobile-brand-img, .mobile-hover:focus  .overlay-mobile-brand-img, .mobile-hover:active  .overlay-mobile-brand-img{
     opacity: 1;  background:rgba(0,0,0,0.6);
