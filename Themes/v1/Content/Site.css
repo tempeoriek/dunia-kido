@@ -621,6 +621,7 @@ a[class*="child-acc-category-"] {
     display:flex;
     align-items:center; /*for vertically center*/
     justify-content:center; /*for horizontally center*/
+    margin: 3px;
 }
 
 .overlay-bottom-mobile-brand-img { 
